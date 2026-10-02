@@ -1,0 +1,43 @@
+INSTRUCCIONES DE USO — Asistente 14 Ver. 2.2
+=====================================================
+
+Materia: Sociología
+Código: 14
+Cátedra: Pablo Roma
+Ciclo: Básico Común (CBC) — Universidad de Buenos Aires (UBA)
+
+Qué hace este tutor:
+  Asistente académico por voz. Escuchá una pregunta formulada oralmente,
+  busca la respuesta en la bibliografía obligatoria de la materia y
+  devuelve una respuesta calibrada según el caso de examen: 80–120 palabras
+  para Verdadero/Falso con justificación, 200–250 palabras para preguntas
+  breves de desarrollo, o prosa articulada que restituya la lógica causal
+  de los enunciados a rellenar. Registro formal, crítico y epistemológicamente
+  denso, fiel a la perspectiva de la Cátedra Roma. Pensado para preparar
+  el Primer Parcial (Unidades 1 y 2) y el Segundo Parcial (Unidades 3 y 4).
+
+Cómo se usa:
+  1. Pegá tu API Key de Gemini en el panel "Configuración" (esquina
+     inferior derecha). También podés fijarla como variable de entorno
+     VITE_GEMINI_API_KEY.
+  2. Tocá "Grabar" y formulá tu pregunta en voz alta. Podés pausar y
+     reanudar para releer; todo se acumula en un único clip.
+  3. Tocá "Enviar". La respuesta aparece escrita y se lee en voz alta
+     automáticamente.
+  4. La respuesta queda en la bitácora de la sesión y se guarda
+     automáticamente como archivo .txt en la carpeta qa-logs/ del
+     repositorio (segundo plano, sin interrumpir).
+
+Atajos:
+  · Botón 3 (Play/Pausa voz): pausar/reanudar la lectura de la
+    respuesta actual.
+
+Avisos:
+  · El tutor responde exclusivamente con la bibliografía de la cátedra.
+    Si le preguntás algo fuera del programa, va a contestar que no
+    está en los PDFs cargados.
+  · Las preguntas formuladas por voz se transcriben antes de enviarse
+    a Gemini (para que queden en el log).
+  · El guardado automático en GitHub requiere un token con permiso
+    de Contents: read+write sobre este repo (configurado como
+    VITE_GITHUB_TOKEN en los Secrets del repo).

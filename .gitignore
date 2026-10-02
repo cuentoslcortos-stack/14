@@ -1,0 +1,34 @@
+# Dependencias
+node_modules/
+.node_modules.old/
+
+# Build
+dist/
+*.tsbuildinfo
+
+# Variables de entorno (NUNCA subir keys al repo)
+.env
+.env.local
+.env.*.local
+
+# Caché y metadata de Aider
+.aider*
+.aider.tags.cache.v4/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Scratch local (carpeta usada por Mavis durante typecheck/reparación)
+.scratch/
+
+# Backups de material de LAAV preservados localmente (no se commitean)
+*.LAAV-BACKUP
+
+# Scripts auxiliares locales (migraciones one-shot, renames, etc.)
+_tools/

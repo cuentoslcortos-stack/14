@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build
+        run: npm run build
+        env:
+          # La app ya NO usa estas dos vars para secretos: la API Key de
+          # Gemini y el PAT de GitHub se guardan en el navegador del
+          # usuario (localStorage) y nunca se compilan en el bundle.
+          # VITE_GITHUB_REPO/VITE_QA_LOGS_* solo definen el destino
+          # público donde se suben los logs (no son secretos).
+          VITE_GITHUB_REPO: ${{ vars.VITE_GITHUB_REPO || github.repository }}
+          VITE_QA_LOGS_DIR: ${{ vars.VITE_QA_LOGS_DIR || 'qa-logs' }}
+          VITE_QA_LOG_PREFIX: ${{ vars.VITE_QA_LOG_PREFIX || 'asis-14' }}
+          VITE_QA_LOGS_BRANCH: ${{ vars.VITE_QA_LOGS_BRANCH || 'main' }}
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
